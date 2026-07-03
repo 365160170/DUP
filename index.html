@@ -18,7 +18,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--ink);color:var(--paper);font-family:var(--body);font-size:15px;line-height:1.5;padding-bottom:90px}
-header{padding-top:calc(22px + env(safe-area-inset-top));background:linear-gradient(180deg,#111 0%,#1c1c1c 100%);border-bottom:3px solid var(--red);padding:22px 18px 16px;text-align:center}
+header{background:radial-gradient(120% 140% at 50% -20%, #232323 0%, #141414 55%, #101010 100%);border-bottom:1px solid #2a2a2a;padding:calc(26px + env(safe-area-inset-top)) 18px 20px;text-align:center;position:relative;overflow:hidden}
 header h1{font-family:var(--font);font-size:clamp(26px,5vw,38px);letter-spacing:.06em;font-weight:800;text-transform:uppercase}
 header h1 span{color:var(--red)}
 header p{color:var(--gray);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;margin-top:4px}
@@ -104,6 +104,75 @@ details div{padding:0 14px 12px;font-size:13px;color:#cfcfcf}
 #helpPop{position:fixed;z-index:100;max-width:280px;background:#101010;border:1px solid var(--red);border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.45;color:#e8e8e8;box-shadow:0 8px 30px rgba(0,0,0,.6);display:none}
 #helpPop b{color:var(--red);display:block;font-family:var(--font);font-size:14px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
 #helpPop .close{position:absolute;top:6px;right:10px;color:var(--gray);cursor:pointer;font-size:16px}
+
+/* ===== Pase premium ===== */
+header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,transparent,var(--red) 20%,var(--red) 80%,transparent)}
+header::before{content:"";position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:70%;height:120px;background:radial-gradient(50% 60% at 50% 40%, rgba(230,57,70,.14), transparent 70%);pointer-events:none}
+header>p:first-child{font-size:11px!important;letter-spacing:.3em!important;opacity:.95}
+header h1{text-shadow:0 2px 24px rgba(230,57,70,.25)}
+#greet{opacity:.85}
+
+body{background:
+  radial-gradient(80% 40% at 50% 0%, #1b1b1b 0%, var(--ink) 60%),
+  var(--ink)}
+
+.wk{border-radius:12px;box-shadow:0 1px 0 rgba(255,255,255,.03) inset}
+.wk:active{transform:scale(.94)}
+.wk.active{box-shadow:0 4px 18px rgba(230,57,70,.35);transform:translateY(-1px)}
+.wk,.tab,.ex,.chip,button{transition:transform .16s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease}
+
+.tab{border-radius:14px;padding:14px 4px}
+.tab:active{transform:scale(.97)}
+.tab.active{box-shadow:0 6px 22px rgba(230,57,70,.32)}
+
+.ex{border-radius:14px;box-shadow:0 1px 0 rgba(255,255,255,.03) inset, 0 2px 10px rgba(0,0,0,.35)}
+.ex-head{min-height:58px}
+.ex.open{border-color:#4a4a4a}
+.ex.open .ex-num{transform:scale(1.15)}
+.ex-num{transition:transform .2s ease}
+.ex-check:active{transform:scale(.85)}
+.ex.done{border-color:rgba(61,190,123,.4)}
+.ex-body{animation:slideDown .22s ease}
+@keyframes slideDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
+/* entrada escalonada de tarjetas */
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.ex{animation:fadeUp .35s ease backwards}
+.ex:nth-child(1){animation-delay:.02s}.ex:nth-child(2){animation-delay:.05s}
+.ex:nth-child(3){animation-delay:.08s}.ex:nth-child(4){animation-delay:.11s}
+.ex:nth-child(5){animation-delay:.14s}.ex:nth-child(6){animation-delay:.17s}
+.ex:nth-child(7){animation-delay:.20s}.ex:nth-child(8){animation-delay:.23s}
+.ex:nth-child(9){animation-delay:.26s}.ex:nth-child(10){animation-delay:.29s}
+
+.log-row input{transition:border-color .15s ease, box-shadow .15s ease}
+.log-row input:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 3px rgba(230,57,70,.22)}
+.log-row input:not(:placeholder-shown){border-color:#4b4b4b}
+
+.deload-note{background:linear-gradient(135deg,#0f241a,#122e20);box-shadow:0 4px 16px rgba(61,190,123,.12)}
+.tip{background:linear-gradient(90deg,#141414,#181818)}
+
+.timerbar{background:rgba(12,12,12,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid rgba(230,57,70,.55)}
+.timerbar button{border-radius:12px}
+.timerbar button:active{transform:scale(.95)}
+.timerbar button.go{box-shadow:0 4px 16px rgba(230,57,70,.4)}
+#tdisp{text-shadow:0 0 20px rgba(230,57,70,.0);transition:text-shadow .3s}
+#tdisp.low{animation:pulse 1s ease infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+
+section.info h2{position:relative;padding-left:14px;border-bottom:1px solid #262626}
+section.info h2::before{content:"";position:absolute;left:0;top:4px;bottom:10px;width:4px;background:var(--red);border-radius:2px}
+.bar{box-shadow:0 1px 0 rgba(255,255,255,.04) inset}
+.bar i{transition:width .8s cubic-bezier(.2,.8,.2,1)}
+details{border-radius:12px}
+details[open]{border-color:#4a4a4a}
+details summary{transition:color .15s}
+details summary:active{color:var(--red)}
+#helpPop{animation:fadeUp .18s ease}
+
+/* respeto a reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
 </style>
 </head>
 <body>
